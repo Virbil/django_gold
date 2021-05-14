@@ -16,30 +16,33 @@ def index(request):
     return render(request,'index.html')
 
 def farm(request):
-    request.session['rupees'] += rand.randrange(10, 20)
-    request.session['activity_log'] += 'Earned ' + str(request.session['rupees']) + ' rupees from the farm! ' + str(today)
-    request.session['activity_log'] += '\n'
-
-    return render(request, 'index.html')
+    farm_add = rand.randrange(10, 20)
+    request.session['rupees'] += farm_add
+    request.session['activity_log'] += f"Earned {str(farm_add)} rupees from the farm! - {str(today)}   "
+# <p>Earned {str(request.session['rupees'])} rupees from the farm! - {str(today)}</p>"
+    return redirect('/')
 
 def cave(request):
-    request.session['rupees'] += rand.randrange(5, 10)
-    request.session['activity_log'] += 'Earned ' + str(request.session['rupees']) + ' rupees from the cave! ' + str(today)
-    return render(request, 'index.html')
+    cave_add = rand.randrange(5, 10)
+    request.session['rupees'] += cave_add
+    request.session['activity_log'] += f"Earned {str(cave_add)} rupees from the cave! - {str(today)}   "
+    return redirect('/')
 
 def house(request):
-    request.session['rupees'] += rand.randrange(2, 5)
-    request.session['activity_log'] += 'Earned ' + str(request.session['rupees']) + ' rupees from the house! ' + str(today)
-    return render(request, 'index.html')
+    house_add = rand.randrange(2, 5)
+    request.session['rupees'] += house_add
+    request.session['activity_log'] += f"Earned {str(house_add)} rupees from the house! - {str(today)}  "
+    return redirect('/')
 
 def casino(request):
-    request.session['rupees'] += rand.randrange(-50, 50)
-    if request.session['rupees'] < 0:
-        request.session['activity_log'] += 'Entered a casino and lost ' + str(request.session['rupees']) + '. Ouch! That might teach you to gamble.' + str(today)
+    casino_change = rand.randrange(-50, 50)
+    request.session['rupees'] += casino_change
+    if casino_change < 0:
+        request.session['activity_log'] += f"Entered a casino and lost {str(casino_change)} rupees. Ouch! That might teach you to gamble. - {str(today)}    "
     else:
-        request.session['activity_log'] += 'It is your lucky day. You entered a casino and won ' + str(request.session['rupees']) + ' rupees!' + str(today)
-    return render(request, 'index.html')
+        request.session['activity_log'] += f"It is your lucky day. You entered a casino and won {str(casino_change)} rupees! - {str(today)}     "
+    return redirect('/')
 
 def process_rupees(request):
     request.session.flush()
-    return render(request,'index.html')
+    return redirect('/')

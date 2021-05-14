@@ -12,6 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/album.css' %}"> 
@@ -26,7 +27,7 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="text-white">About</h4>
+              <h4 class="text-white">About the Game</h4>
               <p class="text-muted">Let's help a ninja make some money! When you start the game, your ninja should have 0 rupees. The ninja can go to different places (farm, cave, house, casino) and earn different amounts of rupees. In the case of a casino, your ninja can earn or lose up to 50 rupees.</p>
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
@@ -43,7 +44,7 @@
       <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
           <a href="#" class="navbar-brand d-flex align-items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg> -->
             <strong>Ninja Rupees</strong>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,13 +58,9 @@
 
       <section class="jumbotron text-center">
         <div class="container">
-          <img class="card-img-top" height="350" src="{% static 'img/rupees.png' %}" alt="Rupees">
           <h1 class="jumbotron-heading">Your Rupees</h1>
           <p class="lead text-muted">You have {{ request.session.rupees }} rupees!</p>  
-          <!-- <p>
-            <a href="#" class="btn btn-primary my-2">Main call to action</a>
-            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-          </p> -->
+          <img class="card-img-top" height="350" src="{% static 'img/rupees.png' %}" alt="Rupees">
         </div>
       </section>
 
@@ -80,9 +77,9 @@
                   <p class="card-text">(earn 10 to 20 rupees)</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <form action="/farm" method="GET">
-                      <!-- {% csrf_token %} -->
-                        <button class="btn btn-sm btn-outline-secondary ml-5">Find Rupees!</button>
+                      <form action="/farm" method="POST">
+                      {% csrf_token %}
+                        <button class="btn_location btn btn-sm btn-outline-secondary ml-5">Find Rupees!</button>
                       </form>
                     </div>
                   </div>
@@ -98,9 +95,9 @@
                   <p class="card-text">(earn 5 to 10 rupees)</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <form action="/cave" method="GET">
-                      <!-- {% csrf_token %} -->
-                        <button class="btn btn-sm btn-outline-secondary ml-5">Find Rupees!</button>
+                      <form action="/cave" method="POST">
+                      {% csrf_token %}
+                        <button class="btn_location btn btn-sm btn-outline-secondary ml-5">Find Rupees!</button>
                       </form>
                     </div>
                   </div>
@@ -116,9 +113,9 @@
                   <p class="card-text">(earn 2 to 5 rupees)</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <form action="/house" method="GET">
-                      <!-- {% csrf_token %} -->
-                        <button class="btn btn-sm btn-outline-secondary ml-5">Find Rupees!</button>
+                      <form action="/house" method="POST">
+                      {% csrf_token %}
+                        <button class="btn_location btn btn-sm btn-outline-secondary ml-5">Find Rupees!</button>
                       </form>
                     </div>
                   </div>
@@ -134,9 +131,9 @@
                   <p class="card-text">(earn/lose 0-50 rupees)</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <form action="/casino" method="GET">
-                      <!-- {% csrf_token %} -->
-                        <button class="btn btn-sm btn-outline-secondary ml-5">Gamble!</button>
+                      <form action="/casino" method="POST">
+                      {% csrf_token %}
+                        <button class="btn_location btn btn-sm btn-outline-secondary ml-5">Gamble!</button>
                       </form>
                     </div>
                   </div>
@@ -145,9 +142,10 @@
             </div>
           </div>
 
-          <h2 class="col-sm-12">Activities</h2>
-          <div class="col-sm-12 overflow-auto">
-            <p class="border border-secondary border-5 rounded-top p-5">{{ request.session.activity_log }}</p>
+          <h2 class="col-sm-12">Activities: </h2>
+          <div class="col-sm-12 overflow-scroll" style="height:200px">
+            <p class="border border-secondary border-5 rounded-top p-3">{{ request.session.activity_log }}</p>
+              <!-- <p>{{ request.session.activity_log|safe }}</p> -->
           </div>
         </div>
       </div>
@@ -157,10 +155,18 @@
     <footer class="text-muted">
       <div class="container">
         <p class="float-right">
-          <a href="/process-rupees">Back to top</a>
+          <a href="/process-rupees">Reset Game</a>
         </p>
         <p>Ninja Rupees is &copy; Coding Dojo</p>
       </div>
     </footer>
+
+    <!-- <script>
+      $(document).ready(function() {
+        $(".btn_location").click(function(e){
+          e.preventDefault();
+        });
+      });
+    </script> -->
   </body>
 </html>
