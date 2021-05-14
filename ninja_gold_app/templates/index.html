@@ -57,10 +57,13 @@
     <main role="main">
 
       <section class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading">Your Rupees</h1>
-          <p class="lead text-muted">You have {{ request.session.rupees }} rupees!</p>  
-          <img class="card-img-top" height="350" src="{% static 'img/rupees.png' %}" alt="Rupees">
+        <div class="container bg-image">
+          <div class="scoreboard">
+            <h1 class="jumbotron-heading centered">Your Rupees</h1>
+            <p class="lead text-muted centered">You have {{ request.session.rupees }} rupees!</p>  
+            <!-- <img class="card-img-top" height="350" src="{% static 'img/rupees.png' %}" alt="Rupees"> 
+            'https://mdbootstrap.com/img/Photos/Others/images/76.jpg'-->
+          </div>
         </div>
       </section>
 
@@ -143,8 +146,12 @@
           </div>
 
           <h2 class="col-sm-12">Activities: </h2>
-          <div class="col-sm-12 overflow-scroll" style="height:200px">
-            <p class="border border-secondary border-5 rounded-top p-3">{{ request.session.activity_log }}</p>
+          <div class="col-sm-12 overflow-scroll border border-secondary border-5 rounded-top p-3" id="activities">
+
+              {% for activity in request.session.activity_log reversed %}
+                <p>{{ activity.message }}</p>
+              {% endfor %}
+
               <!-- <p>{{ request.session.activity_log|safe }}</p> -->
           </div>
         </div>
