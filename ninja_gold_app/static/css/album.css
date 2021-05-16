@@ -31,6 +31,20 @@ scoreboard {
   background:  url('/static/img/rupees.png');
 }
 
+/* Centered text */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#activities {
+  height: 12rem;
+  overflow-y: scroll;
+  border: solid;
+  padding: 1rem;
+}
 footer {
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -41,18 +55,3 @@ footer p {
 }
 
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
-
-#activities {
-  height: 12rem;
-  overflow-y: scroll;
-  border: solid;
-  padding: 1rem;
-}
-
-/* Centered text */
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
